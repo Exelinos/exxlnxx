@@ -2,17 +2,34 @@ package com.example.exxlnxx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class Main3Activity extends AppCompatActivity {
-TextView tvlogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         tvlogin=findViewById(R.id.tvlogin);
         setContentView(R.layout.activity_main3);
+        Thread background = new Thread() {
+            public void run() {
+                try {
+                    // Thread will sleep for 5 seconds
+                    sleep(1*1000);
 
+                    // After 5 seconds redirect to another intent
+                    Intent i=new Intent(Main3Activity.this,Main2Activity.class);
+                    startActivity(i);
+
+                    //Remove activity
+                    finish();
+                } catch (Exception e) {
+                }
+            }
+        };
+        // start thread
+        background.start();
     }
 }
